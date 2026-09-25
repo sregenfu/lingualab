@@ -55,12 +55,13 @@ export type TranslationResult = {
 }
 
 type LibreTranslateResponse = { translatedText?: string | string[]; error?: string }
+const translationApiBase = import.meta.env.VITE_TRANSLATE_API_URL ?? '/api'
 
 async function requestLibreTranslate(q: string | string[], direction: TranslationDirection): Promise<string | string[]> {
   const [source, target] = direction.split('-')
   let response: Response
   try {
-    response = await fetch('/api/translate', {
+    response = await fetch(`${translationApiBase}/translate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ q, source, target, format: 'text' }),
