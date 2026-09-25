@@ -1,8 +1,0 @@
-FROM libretranslate/libretranslate:latest
-
-ENV LT_LOAD_ONLY=en,de
-ENV LT_HOST=0.0.0.0
-ENV LT_PORT=10000
-ENV LT_DISABLE_WEB_UI=true
-
-EXPOSE 10000

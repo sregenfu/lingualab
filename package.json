@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "deploy:worker": "wrangler deploy --config worker/wrangler.toml",
     "translate": ".venv-libretranslate\\Scripts\\libretranslate.exe --host 127.0.0.1 --port 5000 --load-only en,de --disable-web-ui",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

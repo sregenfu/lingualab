@@ -1,4 +1,4 @@
-import { useEffect, useState, type KeyboardEvent } from 'react'
+import { useEffect, useMemo, useState, type KeyboardEvent } from 'react'
 import {
   ArrowLeft, BookOpen, CalendarDays, Check, ChevronRight, ClipboardCheck, Clock3, FileText,
   CircleHelp, Home, Languages, Maximize2, MessageCircle, Mic2, Palette, PencilLine, Plus, ScanText, Search, Sparkles, SquareStack, Trash2, X,
@@ -144,7 +144,7 @@ function App() {
   const [learningStreak, setLearningStreak] = useState(getLearningStreak)
   const [selectedCalendarDate, setSelectedCalendarDate] = useState(getDateKey())
   const [clockNow, setClockNow] = useState(() => new Date())
-  const [studyPlan, setStudyPlan] = useState<StudyPlanEntry[]>(() => {
+  const [studyPlan] = useState<StudyPlanEntry[]>(() => {
     const stored = JSON.parse(localStorage.getItem('lingua-study-plan') ?? 'null') as StudyPlanEntry[] | null
     return normalizeStudyPlan(stored?.length ? stored : createStudyPlan())
   })
@@ -186,32 +186,34 @@ function App() {
   useEffect(() => localStorage.setItem('lingua-learning-errors', JSON.stringify(learningErrors)), [learningErrors])
   useEffect(() => localStorage.setItem('lingua-card-theme', cardTheme), [cardTheme])
   useEffect(() => localStorage.setItem('lingua-topic-presentation', topicPresentation), [topicPresentation])
-  useEffect(() => localStorage.setItem('lingua-study-plan', JSON.stringify(studyPlan)), [studyPlan])
+  
   useEffect(() => {
     const timer = window.setInterval(() => setClockNow(new Date()), 1000)
     return () => window.clearInterval(timer)
   }, [])
 
   const allTopics = [...topics, ...catalogTopics, ...customTopics]
-  const completedTopicNames = new Set([
+  const completedTopicNames = useMemo(() => new Set([
     ...learningRecords.filter((record) => record.score > 0 && record.topicName).map((record) => record.topicName as string),
     ...saved.map((lesson) => lesson.topic),
-  ])
-  useEffect(() => {
-    const planComplete = studyPlan.length > 0 && studyPlan.every((entry) => completedTopicNames.has(entry.topicName) || isPlanDateComplete(entry.date))
-    if (!planComplete) return
-    const plannedNames = new Set(studyPlan.map((entry) => entry.topicName))
+  ]), [learningRecords, saved])
+  const visibleStudyPlan = useMemo(() => {
+    const currentPlan = [...studyPlan]
+    const planComplete = currentPlan.length > 0 && currentPlan.every((entry) => completedTopicNames.has(entry.topicName) || isPlanDateComplete(entry.date))
+    if (!planComplete) return currentPlan
+    const plannedNames = new Set(currentPlan.map((entry) => entry.topicName))
     const nextTopics = [...topics, ...catalogTopics]
       .filter((topic, index, list) => ['A1', 'A2'].includes(topic.level) && !completedTopicNames.has(topic.name) && !plannedNames.has(topic.name) && list.findIndex((item) => item.name === topic.name) === index)
       .slice(0, 14)
-    if (!nextTopics.length) return
-    const lastDate = studyPlan[studyPlan.length - 1].date
-    setStudyPlan((current) => [...current, ...nextTopics.map((topic, index) => ({ date: addDaysToDateKey(lastDate, index + 1), topicName: topic.name }))])
-  }, [learningRecords, saved, studyPlan])
-  const todayPlan = studyPlan.find((entry) => entry.date >= getDateKey() && !completedTopicNames.has(entry.topicName) && !isPlanDateComplete(entry.date)) ?? studyPlan.find((entry) => entry.date === getDateKey()) ?? studyPlan[0]
+    if (!nextTopics.length) return currentPlan
+    const lastDate = currentPlan[currentPlan.length - 1].date
+    return [...currentPlan, ...nextTopics.map((topic, index) => ({ date: addDaysToDateKey(lastDate, index + 1), topicName: topic.name }))]
+  }, [completedTopicNames, studyPlan])
+  useEffect(() => localStorage.setItem('lingua-study-plan', JSON.stringify(visibleStudyPlan)), [visibleStudyPlan])
+  const todayPlan = visibleStudyPlan.find((entry) => entry.date >= getDateKey() && !completedTopicNames.has(entry.topicName) && !isPlanDateComplete(entry.date)) ?? visibleStudyPlan.find((entry) => entry.date === getDateKey()) ?? visibleStudyPlan[0]
   const dailyTopic = allTopics.find(({ name }) => name === todayPlan?.topicName) ?? topics[0]
   const dailyTopicCompleted = dailyCompleted || completedTopicNames.has(dailyTopic.name)
-  const planTopics = studyPlan.map((entry) => ({ ...entry, topic: allTopics.find(({ name }) => name === entry.topicName) ?? topics[0], completed: isPlanDateComplete(entry.date) || completedTopicNames.has(entry.topicName) }))
+  const planTopics = visibleStudyPlan.map((entry) => ({ ...entry, topic: allTopics.find(({ name }) => name === entry.topicName) ?? topics[0], completed: isPlanDateComplete(entry.date) || completedTopicNames.has(entry.topicName) }))
   const quickTopics = [...topics, ...catalogTopics].filter(({ level, category }) => level === quickLevel && getTopicArea(category) === topicArea)
   const selectedTopicArea = topicAreas.find(({ id }) => id === topicArea) ?? topicAreas[0]
   const filteredTopics = allTopics.filter(({ name, category }) =>
@@ -341,7 +343,6 @@ function App() {
       setDailyCompleted(true)
       localStorage.setItem(`lingua-daily-${getDateKey()}`, 'done')
       setLearningStreak(getLearningStreak())
-      setStudyPlan((current) => current)
     }
     setEvaluated(true)
   }
