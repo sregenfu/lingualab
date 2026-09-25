@@ -1,0 +1,15 @@
+{
+  "name": "LinguaLab Englisch lernen",
+  "short_name": "LinguaLab",
+  "description": "Englische Grammatik, Vokabeln und Dialoge lernen.",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbfcfa",
+  "theme_color": "#1d3557",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
