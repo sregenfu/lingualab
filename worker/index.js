@@ -8,10 +8,10 @@ async function translateOne(text, source, target) {
   const url = new URL('https://api.mymemory.translated.net/get')
   url.searchParams.set('q', text)
   url.searchParams.set('langpair', `${source}|${target}`)
-  const response = await fetch(url)
-  if (!response.ok) throw new Error('Der Übersetzungsdienst ist momentan nicht erreichbar.')
+  const response = await fetch(url, { headers: { Accept: 'application/json', 'User-Agent': 'LinguaLab/1.0' } })
+  if (!response.ok) throw new Error(`Übersetzungsdienst antwortet mit ${response.status}.`)
   const data = await response.json()
-  const translated = data?.responseData?.translatedText
+  const translated = data?.responseData?.translatedText || data?.matches?.[0]?.translation
   if (!translated) throw new Error('Keine Übersetzung erhalten.')
   return translated
 }

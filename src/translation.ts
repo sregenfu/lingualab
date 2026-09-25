@@ -59,6 +59,18 @@ const translationApiBase = import.meta.env.VITE_TRANSLATE_API_URL ?? '/api'
 
 async function requestLibreTranslate(q: string | string[], direction: TranslationDirection): Promise<string | string[]> {
   const [source, target] = direction.split('-')
+  if (typeof q === 'string') {
+    const memoryUrl = new URL('https://api.mymemory.translated.net/get')
+    memoryUrl.searchParams.set('q', q)
+    memoryUrl.searchParams.set('langpair', `${source}|${target}`)
+    try {
+      const memoryResponse = await fetch(memoryUrl)
+      const memoryData = await memoryResponse.json() as { responseData?: { translatedText?: string } }
+      if (memoryResponse.ok && memoryData.responseData?.translatedText) return memoryData.responseData.translatedText
+    } catch {
+      // Fall back to the configured local or worker endpoint.
+    }
+  }
   let response: Response
   try {
     response = await fetch(`${translationApiBase}/translate`, {
