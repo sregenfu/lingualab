@@ -1,5 +1,6 @@
 import type { Exercise, Topic } from './data'
 import { extendedCatalogTopics } from './catalogExtended'
+import { additionalTenseTopics } from './tenseTopics'
 
 const gap = (before: string, answer: string, after: string, hint: string): Exercise => ({ before, answer, after, hint })
 
@@ -155,4 +156,5 @@ export const catalogTopics: Topic[] = [
     ],
   },
   ...extendedCatalogTopics,
+  ...additionalTenseTopics,
 ]

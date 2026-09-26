@@ -18,6 +18,7 @@ import { isAcceptedAnswer } from './answerUtils'
 import { correctGermanVocabulary } from './translation'
 import { SpeechPractice } from './SpeechPractice'
 import { DialogPractice } from './DialogPractice'
+import { TensePuzzle } from './TensePuzzle'
 import './App.css'
 
 type View = 'home' | 'create' | 'lesson' | 'saved' | 'vocabulary' | 'translator' | 'test-generator' | 'mistakes' | 'help' | 'speech' | 'dialogs'
@@ -580,6 +581,7 @@ function App() {
             </div>
           </section>
         </div>
+        {topic.category === 'Zeitformen' && <TensePuzzle key={topic.name} currentTopic={topic.name} onRecordResult={recordLearning} onAddErrors={addLearningErrors} />}
       </main>}
 
       {view === 'saved' && <main className="saved-page">

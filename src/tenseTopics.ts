@@ -1,0 +1,96 @@
+import type { Exercise, Topic } from './data'
+
+const gap = (before: string, answer: string, after: string, hint: string): Exercise => ({ before, answer, after, hint })
+
+export const additionalTenseTopics: Topic[] = [
+  {
+    name: 'Present Perfect Progressive', level: 'B1', category: 'Zeitformen',
+    summary: 'Diese Zeitform betont, wie lange eine Handlung bis jetzt andauert oder gerade angedauert hat.',
+    structure: 'have/has + been + Verb-ing',
+    usage: ['Handlungen, die in der Vergangenheit begannen und noch andauern', 'Dauer einer Handlung bis jetzt betonen', 'Sichtbare Folge einer gerade beendeten Tätigkeit'],
+    signalWords: ['for two hours', 'since morning', 'all day', 'how long'],
+    examples: ['I have been studying for two hours.', 'She has been working since morning.', 'They are tired because they have been running.'],
+    exercises: [
+      gap('I ', 'have been studying', ' for two hours.', 'study'), gap('She ', 'has been working', ' since morning.', 'work'),
+      gap('We ', 'have been waiting', ' for the bus for half an hour.', 'wait'), gap('He ', 'has been learning', ' English since January.', 'learn'),
+      gap('They ', 'have been playing', ' football all afternoon.', 'play'), gap('It ', 'has been raining', ' all day.', 'rain'),
+      gap('You ', 'have been reading', ' that book for weeks.', 'read'), gap('Mia ', 'has been cooking', ' since five.', 'cook'),
+      gap('The children ', 'have been swimming', ' for an hour.', 'swim'), gap('Tom ', 'has been looking', ' for his keys all morning.', 'look'),
+    ],
+  },
+  {
+    name: 'Past Perfect', level: 'B1', category: 'Zeitformen',
+    summary: 'Das Past Perfect beschreibt, was vor einem anderen Ereignis in der Vergangenheit bereits geschehen war.',
+    structure: 'had + past participle',
+    usage: ['Vorvergangenheit ausdrücken', 'Reihenfolge zweier vergangener Ereignisse klären', 'Etwas war schon vor einem bestimmten Zeitpunkt abgeschlossen'],
+    signalWords: ['already', 'before', 'by the time', 'after'],
+    examples: ['She had left before I arrived.', 'We had finished when the phone rang.', 'They had already eaten by eight.'],
+    exercises: [
+      gap('She ', 'had left', ' before I arrived.', 'leave'), gap('We ', 'had finished', ' when the phone rang.', 'finish'),
+      gap('They ', 'had eaten', ' before the film started.', 'eat'), gap('I ', 'had seen', ' the film before we discussed it.', 'see'),
+      gap('Tom ', 'had lost', ' his keys before he got home.', 'lose'), gap('Mia ', 'had written', ' the email before lunch.', 'write'),
+      gap('The train ', 'had departed', ' when we reached the station.', 'depart'), gap('You ', 'had met', ' her before the party.', 'meet'),
+      gap('The children ', 'had gone', ' to bed before their parents returned.', 'go'), gap('He ', 'had studied', ' English before moving to London.', 'study'),
+    ],
+  },
+  {
+    name: 'Past Perfect Progressive', level: 'B2', category: 'Zeitformen',
+    summary: 'Diese Form betont die Dauer einer Handlung, die vor einem vergangenen Ereignis stattfand.',
+    structure: 'had + been + Verb-ing',
+    usage: ['Dauer bis zu einem Zeitpunkt in der Vergangenheit betonen', 'Eine frühere, längere Handlung als Ursache erklären', 'Abläufe in der Vorvergangenheit beschreiben'],
+    signalWords: ['for hours before', 'since morning when', 'how long before'],
+    examples: ['I had been waiting for an hour when she arrived.', 'They had been working all day before they rested.', 'He was tired because he had been running.'],
+    exercises: [
+      gap('I ', 'had been waiting', ' for an hour when she arrived.', 'wait'), gap('They ', 'had been working', ' all day before they rested.', 'work'),
+      gap('He ', 'had been running', ' before he took a break.', 'run'), gap('We ', 'had been driving', ' for hours when we stopped.', 'drive'),
+      gap('Mia ', 'had been studying', ' all night before the exam.', 'study'), gap('It ', 'had been raining', ' before the sun appeared.', 'rain'),
+      gap('You ', 'had been reading', ' for two hours when I called.', 'read'), gap('Tom ', 'had been cooking', ' before the guests came.', 'cook'),
+      gap('The children ', 'had been playing', ' outside before dinner.', 'play'), gap('She ', 'had been looking', ' for her bag before she found it.', 'look'),
+    ],
+  },
+  {
+    name: 'Future Progressive', level: 'B1', category: 'Zeitformen',
+    summary: 'Das Future Progressive beschreibt eine Handlung, die zu einem Zeitpunkt in der Zukunft gerade ablaufen wird.',
+    structure: 'will + be + Verb-ing',
+    usage: ['Laufende Handlung zu einem zukünftigen Zeitpunkt', 'Geplanten Ablauf in der Zukunft beschreiben', 'Nach einer zukünftigen Beschäftigung fragen'],
+    signalWords: ['this time tomorrow', 'at eight tomorrow', 'all afternoon tomorrow'],
+    examples: ['This time tomorrow, I will be travelling.', 'She will be working at eight.', 'We will be studying all afternoon.'],
+    exercises: [
+      gap('At eight tomorrow, I ', 'will be working', '.', 'work'), gap('This time tomorrow, she ', 'will be travelling', '.', 'travel'),
+      gap('We ', 'will be studying', ' all afternoon tomorrow.', 'study'), gap('They ', 'will be playing', ' football at noon.', 'play'),
+      gap('He ', 'will be sleeping', ' when you arrive.', 'sleep'), gap('You ', 'will be sitting', ' on the train at six.', 'sit'),
+      gap('Mia ', 'will be cooking', ' at seven tonight.', 'cook'), gap('I ', 'will be reading', ' during the flight.', 'read'),
+      gap('The children ', 'will be watching', ' a film at eight.', 'watch'), gap('Tom ', 'will be driving', ' to work at nine tomorrow.', 'drive'),
+    ],
+  },
+  {
+    name: 'Future Perfect', level: 'B2', category: 'Zeitformen',
+    summary: 'Das Future Perfect zeigt, dass etwas bis zu einem Zeitpunkt in der Zukunft abgeschlossen sein wird.',
+    structure: 'will + have + past participle',
+    usage: ['Bis zu einem zukünftigen Zeitpunkt abgeschlossene Handlung', 'Erwartetes Ergebnis bis zu einer Frist', 'Rückblick von einem zukünftigen Zeitpunkt aus'],
+    signalWords: ['by tomorrow', 'by then', 'by the time'],
+    examples: ['I will have finished by Friday.', 'She will have left by noon.', 'They will have arrived by eight.'],
+    exercises: [
+      gap('By Friday, I ', 'will have finished', ' the report.', 'finish'), gap('She ', 'will have left', ' by noon.', 'leave'),
+      gap('They ', 'will have arrived', ' by eight.', 'arrive'), gap('We ', 'will have completed', ' the project by June.', 'complete'),
+      gap('He ', 'will have written', ' the letter by tomorrow.', 'write'), gap('You ', 'will have learned', ' a lot by the end of the course.', 'learn'),
+      gap('Mia ', 'will have cooked', ' dinner by seven.', 'cook'), gap('The train ', 'will have departed', ' by then.', 'depart'),
+      gap('I ', 'will have read', ' the book by Monday.', 'read'), gap('Tom ', 'will have saved', ' enough money by next year.', 'save'),
+    ],
+  },
+  {
+    name: 'Future Perfect Progressive', level: 'B2', category: 'Zeitformen',
+    summary: 'Diese Form betont, wie lange eine Handlung bis zu einem Zeitpunkt in der Zukunft angedauert haben wird.',
+    structure: 'will + have + been + Verb-ing',
+    usage: ['Dauer einer Handlung bis zu einem zukünftigen Zeitpunkt betonen', 'Eine bis dahin andauernde Tätigkeit beschreiben', 'Auf die Dauer bis zu einer zukünftigen Frist zurückblicken'],
+    signalWords: ['by next year ... for', 'by then ... for', 'by the time ... for'],
+    examples: ['By June, I will have been working here for five years.', 'She will have been studying for three hours by noon.', 'By then, we will have been waiting for an hour.'],
+    exercises: [
+      gap('By June, I ', 'will have been working', ' here for five years.', 'work'), gap('By noon, she ', 'will have been studying', ' for three hours.', 'study'),
+      gap('By then, we ', 'will have been waiting', ' for an hour.', 'wait'), gap('By next month, he ', 'will have been living', ' here for a year.', 'live'),
+      gap('By six, they ', 'will have been playing', ' for two hours.', 'play'), gap('By tomorrow, it ', 'will have been raining', ' for a week.', 'rain'),
+      gap('By the end of the day, you ', 'will have been reading', ' for hours.', 'read'), gap('By May, Mia ', 'will have been learning', ' French for a year.', 'learn'),
+      gap('By eight, Tom ', 'will have been cooking', ' for two hours.', 'cook'), gap('By Friday, the team ', 'will have been training', ' for three weeks.', 'train'),
+    ],
+  },
+]

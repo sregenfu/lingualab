@@ -482,6 +482,64 @@ blockquote { margin: 7px 0; padding: 9px 12px; border-left: 2px solid var(--acce
 .sentences label.wrong > small { color: #bd4545; font-size: 11px; font-weight: 800; }
 .exercise-actions { margin-top: 20px; display: flex; justify-content: flex-end; gap: 9px; }
 .exercise-actions .text-button { margin-right: auto; }
+.tense-puzzle { margin-top: 18px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 7px; background: white; box-shadow: 0 14px 32px #2531390a; }
+.tense-puzzle-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.tense-puzzle-heading > div > span { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .06em; }
+.tense-puzzle-heading h2 { margin: 5px 0 7px; font: 700 27px Georgia, serif; }
+.app-shell .tense-puzzle h2, .app-shell .tense-puzzle h3 { color: var(--ink) !important; }
+.tense-puzzle-heading p, .tense-puzzle-instruction { color: var(--muted) !important; font-size: 13px; line-height: 1.5; }
+.tense-puzzle-heading > strong { flex: none; padding: 8px 11px; border-radius: 5px; color: #236e59; background: #e8f5ef; font-size: 12px; }
+.tense-selection { margin-top: 20px; padding: 20px; border: 1px solid var(--line); border-radius: 7px; background: #f8faf8; }
+.tense-selection h3 { margin: 0 0 5px; font: 700 19px Georgia, serif; }
+.tense-selection p { color: var(--muted) !important; font-size: 12px; line-height: 1.5; }
+.tense-selection-label { display: block; margin-top: 18px; color: #355e55; font-size: 11px; }
+.tense-selection-grid { margin-top: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 9px; }
+.tense-selection-grid label { min-height: 48px; padding: 11px 12px; display: flex; align-items: center; gap: 9px; border: 1px solid #ced9d3; border-radius: 6px; color: var(--ink); background: white; cursor: pointer; font-size: 12px; font-weight: 800; }
+.tense-selection-grid label.checked { border-color: #2b9185; background: #e8f7f3; }
+.tense-selection-grid input { flex: none; width: 16px; height: 16px; margin: 0; accent-color: #287d71; cursor: pointer; }
+.tense-selection-actions { margin-top: 17px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.tense-selection-actions > span { margin-right: auto; color: var(--muted); font-size: 11px; font-weight: 700; }
+.tense-selection .tense-selection-note { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--line); }
+.tense-puzzle-instruction { margin: 15px 0 17px; }
+.tense-bank, .tense-zone { padding: 17px; border: 1px dashed #aebdb8; border-radius: 7px; background: #f8faf8; }
+.tense-zone-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.tense-zone-heading > strong { font-size: 14px; }
+.tense-zone-heading > span { color: var(--muted); font-size: 11px; font-weight: 700; }
+.tense-zone-heading small { color: var(--muted); font-size: 9px; font-weight: 800; }
+.tense-zone-heading h3 { margin: 3px 0 0; font: 700 20px Georgia, serif; }
+.tense-zone-heading button, .tense-return { padding: 7px 10px; border: 1px solid #bacbc4; border-radius: 5px; color: #215d50; background: white; cursor: pointer; font-size: 11px; font-weight: 800; }
+.tense-zone-heading button:disabled { opacity: .5; cursor: not-allowed; }
+.tense-cards { display: flex; flex-wrap: wrap; gap: 9px; }
+.tense-card { min-width: 135px; max-width: 100%; min-height: 65px; padding: 10px 13px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; border: 1px solid #ced9d3; border-radius: 6px; color: var(--ink); background: white; box-shadow: 0 3px 0 #dce5df; text-align: left; cursor: grab; touch-action: manipulation; }
+.tense-card small { color: #487265; font-size: 10px; font-weight: 800; }
+.tense-card span { font-size: 13px; font-weight: 700; line-height: 1.35; }
+.tense-card:hover, .tense-card.selected { border-color: var(--accent-3); background: color-mix(in srgb, var(--accent-3) 9%, white); }
+.tense-card.selected { outline: 2px solid var(--accent-3); outline-offset: 2px; }
+.tense-card.correct { border-color: #6baa80; background: #f0faf2; }
+.tense-card.wrong { border-color: #da8b80; background: #fff3f1; }
+.tense-card em { color: #a33f3b; font-size: 10px; font-style: normal; font-weight: 800; }
+.tense-card.correct em { color: #246644; }
+.tense-card:focus-visible, .tense-zone-heading button:focus-visible, .tense-return:focus-visible { outline: 2px solid var(--accent-3); outline-offset: 3px; }
+.tense-bank-hint, .tense-empty { display: block; padding: 10px 0; color: #6e8179; font-size: 11px; }
+.tense-return { margin-top: 12px; }
+.tense-zones { margin-top: 12px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.tense-zone { min-height: 188px; border-style: solid; }
+.tense-zone.simple { border-color: #e4c6a0; background: #fdf8f1; }
+.tense-zone.progressive { border-color: #add6ce; background: #f2faf8; }
+.tense-zone.perfect-progressive { border-color: #bad8b2; background: #f5faf3; }
+.tense-zone.past { border-color: #bdc5e3; background: #f5f6fc; }
+.tense-zone.past-progressive { border-color: #d4b9dd; background: #fbf5fc; }
+.tense-zone.past-perfect { border-color: #c5c2dd; background: #f7f6fc; }
+.tense-zone.past-perfect-progressive { border-color: #dbc5db; background: #fbf6fb; }
+.tense-zone.perfect { border-color: #d6c49d; background: #fcf9f0; }
+.tense-zone.will { border-color: #b5cfde; background: #f3f9fc; }
+.tense-zone.future-progressive { border-color: #a5cddb; background: #f1f9fb; }
+.tense-zone.future-perfect { border-color: #bfcead; background: #f7faf2; }
+.tense-zone.future-perfect-progressive { border-color: #bfd5ce; background: #f4faf7; }
+.tense-zone.going-to { border-color: #d9c1b6; background: #fcf6f3; }
+.tense-puzzle-actions { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 9px; }
+.tense-puzzle-actions p { margin: 0 auto 0 0; color: #246644 !important; font-size: 12px; font-weight: 700; }
+.tense-puzzle-actions .text-button { margin-right: auto; }
 .saved-heading { padding: 35px 0 30px; display: flex; justify-content: space-between; align-items: end; border-bottom: 1px solid var(--line); }
 .saved-heading h1 { margin: 7px 0; font: 700 40px Georgia, serif; letter-spacing: 0; }
 .saved-heading p { color: var(--muted); font-size: 14px; }
@@ -1017,6 +1075,7 @@ footer > span { color: var(--ink); font: 700 17px Georgia, serif; }
   .help-details article { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .help-details article:last-child { border-bottom: 0; }
   .lesson-columns { grid-template-columns: 1fr; }
+  .tense-zones { grid-template-columns: 1fr; }
   .lesson-hero { align-items: flex-start; flex-direction: column; }
   .formula { width: 100%; min-width: 0; }
   .saved-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1061,6 +1120,14 @@ footer > span { color: var(--ink); font: 700 17px Georgia, serif; }
   .topic-modal-actions { flex-direction: column-reverse; }
   .topic-modal-actions button { width: 100%; }
   .lesson-page, .saved-page { width: min(100% - 28px, 1160px); padding-top: 22px; }
+  .tense-puzzle { padding: 19px 16px; }
+  .tense-puzzle-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .tense-puzzle-heading h2 { font-size: 23px; }
+  .tense-card { flex: 1 1 145px; }
+  .tense-selection { padding: 15px; }
+  .tense-selection-grid { grid-template-columns: 1fr 1fr; }
+  .tense-selection-actions .primary { width: 100%; }
+  .tense-puzzle-actions .primary, .tense-puzzle-actions .secondary { flex: 1; }
   .vocabulary-page { width: calc(100% - 28px); padding-top: 28px; }
   .translator-page { width: calc(100% - 28px); padding-top: 28px; }
   .test-generator-page, .generated-test-page { width: calc(100% - 28px); padding-top: 28px; }
